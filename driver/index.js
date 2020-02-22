@@ -33,9 +33,10 @@ module.exports = async function (context, req) {
                 }
             }
         });
+    } else {
+        context.res = {
+            status: 403,
+            body: "missing parameter"
+        };
     }
-    context.res = {
-        status: 403,
-        body: "missing parameter"
-    };
 };
