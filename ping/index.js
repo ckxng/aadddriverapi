@@ -3,7 +3,7 @@
 /**
  * Generate a diceware passphrase.
  * 
- * /api/generate?length={number}&seq={string}
+ * /api/ping
  */
 module.exports = async function (context, req) {
     context.res = {
