@@ -2,6 +2,11 @@
 
 Driver API is an Azure Function App
 
+# Live Demo
+
+- https://aadd.azure-api.net/1/ping
+- https://aadd.azure-api.net/1/version
+
 # Development
 
 This package can be uploaded to Azure as a ZIP deployment.  The conveniant
