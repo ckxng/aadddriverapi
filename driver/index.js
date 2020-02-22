@@ -17,13 +17,13 @@ module.exports = async function (context, req) {
         tableService.retrieveEntity('drivers', req.query.base, req.query.driver, function(err, result, res) {
             if(err) {
                 context.res = {
-                    status = 500,
+                    status: 500,
                     body: err
                 }
             } else {
                 if(result) {
                     context.res = {
-                        body = result
+                        body: result
                     }
                 } else {
                     context.res = {
