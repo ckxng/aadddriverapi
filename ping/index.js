@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Generate a diceware passphrase.
+ * Returns the string "pong" if the API is alive.
  * 
  * /api/ping
  */
