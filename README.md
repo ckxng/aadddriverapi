@@ -15,6 +15,37 @@ Functions extension.  Download and open this project folder in Visual
 Studio Code.  A Local Project (driverapi) will appear in the Azure 
 Functions extension.  With this Local Project selected, choose Deploy 
 to Function App and follow the prompts.
+
+# /api/driver
+
+A Storage Account is required containing tables with the following schema:
+
+## drivers
+
+- PartitionKey {string} a code that is unique per base
+- RowKey {string, guid} a unique key per driver
+- FirstName {string}
+- LastName {string}
+
+## cars
+
+- PartitionKey {string} a code that is unique per base
+- RowKey {string, guid} a unique key per car
+- OwnerKey {string, guid} the unique key of a row in the drivers table
+- Make {string}
+- Model {string}
+- Year {string}
+- Color {string}
+- Plate {string}
+
+## Environment Variables
+
+The Azure App Service hosting this Function App must container either the following
+in Application Settings, so that the function can retrieve storage credentials via.
+environment variables:
+
+- both of AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY
+- or AZURE_STORAGE_CONNECTION_STRING
     
 # Author
 
