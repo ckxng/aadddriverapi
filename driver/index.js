@@ -31,14 +31,30 @@ module.exports = async function (context, req) {
  * @param {req} req 
  */
 async function get(context, req) {
-    if(!req.query.base || !req.query.id) {
-        console.log("get driver base and id are both required");
+    if(!req.query.base) {
+        console.log("get driver base is required");
         return {
             status: 403,
-            body: "base and id are both required"
+            body: "base is required"
         }; // do not continue if params are missing
     }
 
+    // look up a single driver
+    if(req.query.id) {
+        return getById(context, req);
+    }
+
+    // return a list of drivers at this base
+    return getListByBase(context, req);
+}
+
+/**
+ * Return a single driver by base and id
+
+ * @param {context} context 
+ * @param {req} req 
+ */
+async function getById(context, req) {
     var query = new Promise(function(resolve, reject) {
         tableService.retrieveEntity('drivers', req.query.base, req.query.id, function(err, result, response) {
             console.log("get driver with description "+req.query.base+" "+req.query.id);
@@ -72,4 +88,17 @@ async function get(context, req) {
     });
 
     return await query;
+}
+
+/**
+ * Return a list of drivers by base
+
+ * @param {context} context 
+ * @param {req} req 
+ */
+async function getListByBase(context, req) {
+    return {
+        status: 403,
+        body: "not implemented"
+    };
 }
