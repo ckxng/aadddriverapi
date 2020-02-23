@@ -6,7 +6,7 @@
  * /api/ping
  */
 module.exports = async function (context, req) {
-    context.res = {
+    return {
         // status: 200, /* Defaults to 200 */
         body: "pong"
     };
