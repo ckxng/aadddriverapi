@@ -38,6 +38,14 @@ A Storage Account is required containing tables with the following schema:
 - Color {string}
 - Plate {string}
 
+## Partitions
+
+A unique string representing the base is used as the PartitionKey.  In Azure
+Storage Tables, partitions allow for [application scaling](https://docs.microsoft.com/en-us/rest/api/storageservices/designing-a-scalable-partitioning-strategy-for-azure-table-storage).
+Therefore, a base must be specified for every query that searches for or interacts 
+with drivers.  It is not possible to generate a list of all drivers, unless a
+user submits a query for each base.
+
 ## Environment Variables
 
 The Azure App Service hosting this Function App must contain the following
