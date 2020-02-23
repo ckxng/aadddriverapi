@@ -6,8 +6,7 @@
  * /api/version
  */
 module.exports = async function (context, req) {
-    context.res = {
-        // status: 200, /* Defaults to 200 */
+    return {
         body: {
             version: 1
         }
