@@ -10,33 +10,66 @@ var tableService = azure.createTableService();
 /**
  * Gets a driver
  * 
- * /api/driver?base=<code>&driver=<guid>
+ * /api/driver?base=<code>&id=<guid>
  */
 module.exports = async function (context, req) {
-    if(req.query.base && req.query.driver) {
-        tableService.retrieveEntity('drivers', req.query.base, req.query.driver, function(err, result, res) {
+    console.log("request "+JSON.stringify(req))
+    if(req.method == "GET") {
+        return get(context, req);
+    }
+
+    return {
+        status: 403,
+        body: "not implemented"
+    };
+};
+
+/**
+ * Looks up a driver
+ * 
+ * @param {context} context 
+ * @param {req} req 
+ */
+async function get(context, req) {
+    if(!req.query.base || !req.query.id) {
+        console.log("get driver base and id are both required");
+        return {
+            status: 403,
+            body: "base and id are both required"
+        }; // do not continue if params are missing
+    }
+
+    var query = new Promise(function(resolve, reject) {
+        tableService.retrieveEntity('drivers', req.query.base, req.query.id, function(err, result, response) {
+            console.log("get driver with description "+req.query.base+" "+req.query.id);
             if(err) {
-                context.res = {
-                    status: 500,
-                    body: err
-                }
-            } else {
-                if(result) {
-                    context.res = {
-                        body: result
-                    }
-                } else {
-                    context.res = {
+                console.log("get driver error "+JSON.stringify("err"));
+                if(err.statusCode == 404) {
+                    resolve({
                         status: 404,
-                        body: "driver not found"
-                    }
+                        body: "driver not found" // more friendly message if a driver simply isn't found
+                    });
+                } else {
+                    resolve({
+                        status: err.statusCode,
+                        body: {
+                            err: err.message // mode detailed message if there was another error
+                        }
+                    });
                 }
+            } else { // no error
+                console.log("get driver found "+JSON.stringify(result));
+                resolve({
+                    body: JSON.stringify({
+                        base: result.PartitionKey._,
+                        id: result.RowKey._,
+                        FirstName: result.FirstName._,
+                        LastName: result.LastName._
+                    })
+                });
             }
         });
-    } else {
-        context.res = {
-            status: 403,
-            body: "missing parameter"
-        };
-    }
-};
+    });
+
+    return await query;
+}
