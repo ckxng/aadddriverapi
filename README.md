@@ -6,6 +6,9 @@ Driver API is an Azure Function App
 
 - https://aadd.azure-api.net/1/ping
 - https://aadd.azure-api.net/1/version
+- https://aadd.azure-api.net/1/driver?base=dfw
+- https://aadd.azure-api.net/1/driver?base=dfw&limit=1
+- https://aadd.azure-api.net/1/driver?base=dfw&id=4d8d4ca7-9ae5-449c-a0a8-f3fc851449a1
 
 # Development
 

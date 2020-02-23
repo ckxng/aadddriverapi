@@ -10,6 +10,8 @@ var tableService = azure.createTableService();
 /**
  * Gets a driver
  * 
+ * /api/driver?base=<code>
+ * /api/driver?base=<code>&limit=<number>
  * /api/driver?base=<code>&id=<guid>
  */
 module.exports = async function (context, req) {
