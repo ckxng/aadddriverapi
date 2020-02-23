@@ -40,9 +40,10 @@ A Storage Account is required containing tables with the following schema:
 
 ## Environment Variables
 
-The Azure App Service hosting this Function App must container either the following
+The Azure App Service hosting this Function App must contain the following
 in Application Settings, so that the function can retrieve storage credentials via.
-environment variables:
+environment variables.  If a local execution environment is used (F5 in VS Code), 
+this is provided in local.settings.json.
 
 - both of AZURE_STORAGE_ACCOUNT and AZURE_STORAGE_ACCESS_KEY
 - or AZURE_STORAGE_CONNECTION_STRING
