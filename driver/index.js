@@ -97,8 +97,45 @@ async function getById(context, req) {
  * @param {req} req 
  */
 async function getListByBase(context, req) {
-    return {
-        status: 403,
-        body: "not implemented"
-    };
+    var query = new Promise(function(resolve, reject) {
+        // build search query
+        var searchquery = new azure.TableQuery().where('PartitionKey eq ?', req.query.base);
+        if(req.query.limit) {
+            searchquery = searchquery.top(req.query.limit);
+        }
+
+        tableService.queryEntities('drivers', searchquery, null, function(err, result) {
+            console.log("get driver with description "+req.query.base+" "+req.query.id);
+            if(err) {
+                console.log("get driver error "+JSON.stringify("err"));
+                if(err.statusCode == 404) {
+                    resolve({
+                        status: 404,
+                        body: "drivers not found" // more friendly message if a driver simply isn't found
+                    });
+                } else {
+                    resolve({
+                        status: err.statusCode,
+                        body: {
+                            err: err.message // mode detailed message if there was another error
+                        }
+                    });
+                }
+            } else { // no error
+                console.log("get drivers found "+JSON.stringify(result));
+                resolve({
+                    body: JSON.stringify(result.entries.map(function(v) {
+                        return {
+                            base: v.PartitionKey._,
+                            id: v.RowKey._,
+                            FirstName: v.FirstName._,
+                            LastName: v.LastName._
+                        };
+                    }))
+                });
+            }
+        });
+    });
+
+    return await query;
 }
