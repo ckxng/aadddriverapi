@@ -68,7 +68,7 @@ async function getById(context, req) {
                 if(err.statusCode == 404) {
                     resolve({
                         status: 404,
-                        body: "car not found" // more friendly message if a driver simply isn't found
+                        body: "car not found" // more friendly message if a car simply isn't found
                     });
                 } else {
                     resolve({
@@ -125,7 +125,7 @@ async function getListByBase(context, req) {
                 if(err.statusCode == 404) {
                     resolve({
                         status: 404,
-                        body: "car not found" // more friendly message if a driver simply isn't found
+                        body: "car not found" // more friendly message if a car simply isn't found
                     });
                 } else {
                     resolve({
