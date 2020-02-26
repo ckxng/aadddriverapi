@@ -52,6 +52,13 @@ A Storage Account is required containing tables with the following schema:
 - Color {string}
 - Plate {string}
 
+## riders
+
+- PartitionKey {string} a code that is unique per base
+- RowKey {string, guid} a unique key per rider
+- FirstName {string}
+- LastName {string}
+
 ## Partitions
 
 A unique string representing the base is used as the PartitionKey.  In Azure
