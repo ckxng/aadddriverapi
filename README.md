@@ -8,7 +8,15 @@ Driver API is an Azure Function App
 - https://aadd.azure-api.net/1/version
 - https://aadd.azure-api.net/1/driver?base=dfw
 - https://aadd.azure-api.net/1/driver?base=dfw&limit=1
-- https://aadd.azure-api.net/1/driver?base=dfw&id=4d8d4ca7-9ae5-449c-a0a8-f3fc851449a1
+- https://aadd.azure-api.net/1/driver?base=dfw&id=7df03523-fca0-4c6c-817a-6eb6d63323df
+- https://aadd.azure-api.net/1/car?base=dfw
+- https://aadd.azure-api.net/1/car?base=dfw&limit=1
+- https://aadd.azure-api.net/1/car?base=dfw&driver=7df03523-fca0-4c6c-817a-6eb6d63323df
+- https://aadd.azure-api.net/1/car?base=dfw&driver=7df03523-fca0-4c6c-817a-6eb6d63323df&limit=1
+- https://aadd.azure-api.net/1/car?base=dfw&id=7e77d80b-f6d5-4af0-abb1-c480c4813aab
+
+Note, that if no API calls have come in recently, Azure may have deprovisioned the 
+instances.  If you get an HTTP 500 error, wait a few minutes and try again.
 
 # Development
 
