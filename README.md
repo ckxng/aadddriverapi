@@ -9,6 +9,9 @@ Driver API is an Azure Function App
 - https://aadd.azure-api.net/1/driver?base=dfw
 - https://aadd.azure-api.net/1/driver?base=dfw&limit=1
 - https://aadd.azure-api.net/1/driver?base=dfw&id=7df03523-fca0-4c6c-817a-6eb6d63323df
+- https://aadd.azure-api.net/1/rider?base=dfw
+- https://aadd.azure-api.net/1/rider?base=dfw&limit=1
+- https://aadd.azure-api.net/1/rider?base=dfw&id=23bf522b-fb17-494a-8707-ca43c4a7c51a
 - https://aadd.azure-api.net/1/car?base=dfw
 - https://aadd.azure-api.net/1/car?base=dfw&limit=1
 - https://aadd.azure-api.net/1/car?base=dfw&driver=7df03523-fca0-4c6c-817a-6eb6d63323df
